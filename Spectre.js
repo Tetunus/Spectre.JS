@@ -3,7 +3,7 @@
 //                                                                 //
 //  File: Spectre.js                                               //
 //  Author: Tetunus (Josh)                                         //
-//  Version: 0.0.1                                                 //
+//  Version: 0.0.2                                                 //
 //  Description: The main components and core code for the         //
 //               Spectre inter-process communication components.   //
 //                                                                 //
