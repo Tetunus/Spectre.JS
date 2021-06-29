@@ -9,9 +9,12 @@
 //                                                                 //
 /////////////////////////////////////////////////////////////////////
 
+'use strict';
+
 const net = require('net');
 
 const Port = 8888;
+const Encrypted = true;
 
 const server = net.createServer((socket) =>
 {
@@ -24,9 +27,22 @@ const server = net.createServer((socket) =>
             console.log(`[Spectre -> Debug] Server stopped.`);
         }
 
-        console.log(`[Spectre -> Debug] ${socket.remoteAddress} - Data Recieved - ${data.toString().length}`);
+        if (Encrypted)
+        {
+            let new_data = Buffer.from(data.toString(), 'base64').toString();
 
-        // Process the data here, to get the string do "data.toString()"
+            console.log(`[Spectre -> Debug] ${socket.remoteAddress} - Data Recieved - ${new_data.length} (Encrypted)`);
+
+            // Process the data here, the variable holding that data is "new_data"
+        }
+        else 
+        {
+            let new_data = data.toString();
+
+            console.log(`[Spectre -> Debug] ${socket.remoteAddress} - Data Recieved - ${data.toString().length} (Unencrypted)`);
+
+            // Process the data here, the variable holding that data is "new_data"
+        }
     });
 
     socket.on("error", (err) =>
